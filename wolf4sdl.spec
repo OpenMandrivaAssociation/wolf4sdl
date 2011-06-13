@@ -2,7 +2,7 @@ Name:           wolf4sdl
 Version:        1.7
 Release:        %mkrel 1
 Summary:        SDL port of id Software Wolfenstein 3D
-Group:          Amusements/Games
+Group:          Games/Arcade
 License:        Distributable
 URL:            http://www.alice-dsl.net/mkroll/
 Source0:        http://www.alice-dsl.net/mkroll/bins/Wolf4SDL-1.7-src.zip
