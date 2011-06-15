@@ -26,10 +26,6 @@ Wolfenstein 3D to the cross-platform multimedia library "Simple DirectMedia \
 Layer (SDL)" (http://www.libsdl.org). It is meant to keep the original feel \
 while taking advantage of some improvements.
 
-%description
-
-
-
 %package        registered-id
 Summary:        SDL port of Wolfenstein 3D - id Software registered version
 URL:            http://www.idsoftware.com/games/wolfenstein/wolf3d/
