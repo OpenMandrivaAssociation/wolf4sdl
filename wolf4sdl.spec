@@ -1,30 +1,19 @@
 Name:           wolf4sdl
 Version:        1.7
-Release:        %mkrel 1
+Release:        %mkrel 2
 Summary:        SDL port of id Software Wolfenstein 3D
 Group:          Games/Arcade
 License:        Distributable
 URL:            http://www.alice-dsl.net/mkroll/
 Source0:        http://www.alice-dsl.net/mkroll/bins/Wolf4SDL-1.7-src.zip
 Source1:        %{name}.desktop
-# Update to 1.7 svn snapshot
-# Patch0:         wolf4sdl-1.7-svn255.patch
-# The below patch and the package description are taken from the Debian
-# package by Fabian Greffrath <fabian+debian@greffrath.com>
-# License:
-#  Copying and distribution of the Debian packaging, with or without
-#  modification are permitted in any medium without royalty provided the
-#  copyright notice and this notice are preserved. The Debian packaging is
-#  offered as-is, without any warranty.
-# Patch1:         wolf4sdl-1.7-svn255-debian.patch
-# Patches to create different configurations to build
 Patch2:         Wolf4SDL-1.6-registered-apogee.patch
 Patch3:         Wolf4SDL-1.6-shareware.patch
 Patch4:         Wolf4SDL-1.6-spear.patch
 Patch5:         Wolf4SDL-1.6-speardemo.patch
 BuildRequires:  SDL-devel SDL_mixer-devel desktop-file-utils
 
-%global desc \
+%description
 Maybe it was the fact that people got to blow away Nazis. Maybe it was the \
 sheer challenge of it all. For whatever reason, Wolfenstein 3D and Spear of \
 Destiny, pioneered the first-person shooter genre and brought its legendary \
@@ -38,7 +27,7 @@ Layer (SDL)" (http://www.libsdl.org). It is meant to keep the original feel \
 while taking advantage of some improvements.
 
 %description
-%{desc}
+
 
 
 %package        registered-id
@@ -53,7 +42,7 @@ http://www.idsoftware.com/games/wolfenstein/wolf3d/
 You will need the original registered version's data files to play the
 registered version. Place the data files under /usr/share/wolf3d/registered-id
 before starting %{name}-registered-id. Note all file-names must be lowercase!
-%{desc}
+
 
 
 %package        registered-apogee
@@ -69,7 +58,7 @@ You will need the original registered version's data files to play the
 registered version. Place the data files under
 /usr/share/wolf3d/registered-apogee before starting
 %{name}-registered-apogee. Note all file-names must be lowercase!
-%{desc}
+
 
 
 %package        shareware
@@ -80,7 +69,7 @@ Requires:       wolf3d-shareware
 %description shareware
 This package contains %{name} compiled for playing the shareware version of
 Wolfenstein 3D.
-%{desc}
+
 
 
 %package        spear
@@ -95,7 +84,7 @@ http://www.idsoftware.com/games/wolfenstein/spear/
 You will need the original Spear of Destiny data files to play.
 Place the data files under /usr/share/spear/full before starting
 %{name}-spear. Note all file-names must be lowercase!
-%{desc}
+
 
 
 %package        spear-demo
@@ -106,7 +95,7 @@ Requires:       spear-demo
 %description spear-demo
 This package contains %{name} compiled for playing the demo of the Spear of
 Destiny prequel to Wolfenstein 3D.
-%{desc}
+
 
 
 %prep
