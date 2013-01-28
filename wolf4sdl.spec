@@ -1,6 +1,6 @@
 Name:           wolf4sdl
 Version:        1.7
-Release:        %mkrel 2
+Release:        3
 Summary:        SDL port of id Software Wolfenstein 3D
 Group:          Games/Arcade
 License:        Distributable
@@ -156,55 +156,61 @@ sed -i 's|@VARIANT@|spear-demo|g' %{name}-spear-demo.desktop
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT%{_bindir}
-# mkdir -p $RPM_BUILD_ROOT%{_mandir}/man6
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps
-# install -p -m 644 debian/man/wolf4sdl.6 $RPM_BUILD_ROOT%{_mandir}/man6
-#install -p -m 644 debian/pixmaps/wolf4sdl.xpm $RPM_BUILD_ROOT%{_datadir}/pixmaps
+mkdir -p %{buildroot}%{_bindir}
+mkdir -p %{buildroot}%{_datadir}/applications
+mkdir -p %{buildroot}%{_datadir}/pixmaps
 
-install -m 755 %{name}-registered-id $RPM_BUILD_ROOT%{_bindir}
-# ln -s wolf4sdl.6 $RPM_BUILD_ROOT%{_mandir}/man6/wolf4sdl-registered-id.6
-desktop-file-install --dir $RPM_BUILD_ROOT%{_datadir}/applications \
+# Help launchers for shareware and spear-demo
+
+cat > %{buildroot}%{_bindir}/%{name}-shareware <<EOF
+#!/bin/bash
+
+cd /usr/share/wolf3d/shareware/ && %{name}-shareware.real
+
+EOF
+
+cat > %{buildroot}%{_bindir}/%{name}-spear-demo <<EOF
+#!/bin/bash
+
+cd /usr/share/spear/demo/ && %{name}-spear-demo.real
+
+EOF
+
+chmod a+x %{buildroot}%{_bindir}/%{name}-spear-demo
+
+
+install -m 755 %{name}-registered-id %{buildroot}%{_bindir}/%{name}-registered-id
+desktop-file-install --dir %{buildroot}%{_datadir}/applications \
     %{name}-registered-id.desktop
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/wolf3d/registered-id
+mkdir -p %{buildroot}%{_datadir}/wolf3d/registered-id
 
-install -m 755 %{name}-registered-apogee $RPM_BUILD_ROOT%{_bindir}
-# ln -s wolf4sdl.6 $RPM_BUILD_ROOT%{_mandir}/man6/wolf4sdl-registered-apogee.6
-desktop-file-install --dir $RPM_BUILD_ROOT%{_datadir}/applications \
+install -m 755 %{name}-registered-apogee %{buildroot}%{_bindir}/%{name}-registered-apogee
+desktop-file-install --dir %{buildroot}%{_datadir}/applications \
     %{name}-registered-apogee.desktop
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/wolf3d/registered-apogee
+mkdir -p %{buildroot}%{_datadir}/wolf3d/registered-apogee
 
-install -m 755 %{name}-shareware $RPM_BUILD_ROOT%{_bindir}
-# ln -s wolf4sdl.6 $RPM_BUILD_ROOT%{_mandir}/man6/wolf4sdl-shareware.6
-desktop-file-install --dir $RPM_BUILD_ROOT%{_datadir}/applications \
+install -m 755 %{name}-shareware %{buildroot}%{_bindir}/%{name}-shareware.real
+desktop-file-install --dir %{buildroot}%{_datadir}/applications \
     %{name}-shareware.desktop
 
-install -m 755 %{name}-spear $RPM_BUILD_ROOT%{_bindir}
-# ln -s wolf4sdl.6 $RPM_BUILD_ROOT%{_mandir}/man6/wolf4sdl-spear.6
-desktop-file-install --dir $RPM_BUILD_ROOT%{_datadir}/applications \
+install -m 755 %{name}-spear %{buildroot}%{_bindir}/%{name}-spear
+desktop-file-install --dir %{buildroot}%{_datadir}/applications \
     %{name}-spear.desktop
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/spear/full
+mkdir -p %{buildroot}%{_datadir}/spear/full
 
-install -m 755 %{name}-spear-demo $RPM_BUILD_ROOT%{_bindir}
-# ln -s wolf4sdl.6 $RPM_BUILD_ROOT%{_mandir}/man6/wolf4sdl-spear-demo.6
-desktop-file-install --dir $RPM_BUILD_ROOT%{_datadir}/applications \
+install -m 755 %{name}-spear-demo %{buildroot}%{_bindir}/%{name}-spear-demo.real
+desktop-file-install --dir %{buildroot}%{_datadir}/applications \
     %{name}-spear-demo.desktop
 
 
 %clean
-rm -rf $RPM_BUILD_ROOT
 
 
 %files registered-id
 %defattr(-,root,root,-)
 %doc Changes.txt README.txt license-*.txt
 %{_bindir}/%{name}-registered-id
-# %{_mandir}/man6/%{name}.6*
-# %{_mandir}/man6/%{name}-registered-id.6*
 %{_datadir}/applications/%{name}-registered-id.desktop
-# %{_datadir}/pixmaps/%{name}.xpm
 %dir %{_datadir}/wolf3d
 %dir %{_datadir}/wolf3d/registered-id
 
@@ -212,10 +218,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %doc Changes.txt README.txt license-*.txt
 %{_bindir}/%{name}-registered-apogee
-# %{_mandir}/man6/%{name}.6*
-# %{_mandir}/man6/%{name}-registered-apogee.6*
 %{_datadir}/applications/%{name}-registered-apogee.desktop
-# %{_datadir}/pixmaps/%{name}.xpm
 %dir %{_datadir}/wolf3d
 %dir %{_datadir}/wolf3d/registered-apogee
 
@@ -223,19 +226,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %doc Changes.txt README.txt license-*.txt
 %{_bindir}/%{name}-shareware
-# %{_mandir}/man6/%{name}.6*
-# %{_mandir}/man6/%{name}-shareware.6*
+%{_bindir}/%{name}-shareware.real
 %{_datadir}/applications/%{name}-shareware.desktop
-# %{_datadir}/pixmaps/%{name}.xpm
 
 %files spear
 %defattr(-,root,root,-)
 %doc Changes.txt README.txt license-*.txt
 %{_bindir}/%{name}-spear
-# %{_mandir}/man6/%{name}.6*
-# %{_mandir}/man6/%{name}-spear.6*
 %{_datadir}/applications/%{name}-spear.desktop
-# %{_datadir}/pixmaps/%{name}.xpm
 %dir %{_datadir}/spear
 %dir %{_datadir}/spear/full
 
@@ -243,9 +241,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %doc Changes.txt README.txt license-*.txt
 %{_bindir}/%{name}-spear-demo
-# %{_mandir}/man6/%{name}.6*
-# %{_mandir}/man6/%{name}-spear-demo.6*
+%{_bindir}/%{name}-spear-demo.real
 %{_datadir}/applications/%{name}-spear-demo.desktop
-# %{_datadir}/pixmaps/%{name}.xpm
+
+
 
 
