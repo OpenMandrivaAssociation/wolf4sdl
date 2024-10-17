@@ -4,7 +4,7 @@ Release:        3
 Summary:        SDL port of id Software Wolfenstein 3D
 Group:          Games/Arcade
 License:        Distributable
-URL:            http://www.alice-dsl.net/mkroll/
+URL:            https://www.alice-dsl.net/mkroll/
 Source0:        http://www.alice-dsl.net/mkroll/bins/Wolf4SDL-1.7-src.zip
 Source1:        %{name}.desktop
 Patch2:         Wolf4SDL-1.6-registered-apogee.patch
@@ -28,7 +28,7 @@ while taking advantage of some improvements.
 
 %package        registered-id
 Summary:        SDL port of Wolfenstein 3D - id Software registered version
-URL:            http://www.idsoftware.com/games/wolfenstein/wolf3d/
+URL:            https://www.idsoftware.com/games/wolfenstein/wolf3d/
 
 %description registered-id
 This package contains %{name} compiled for playing the registered version of
@@ -43,7 +43,7 @@ before starting %{name}-registered-id. Note all file-names must be lowercase!
 
 %package        registered-apogee
 Summary:        SDL port of Wolfenstein 3D - Apogee registered version
-URL:            http://www.3drealms.com/wolf3d/index.html
+URL:            https://www.3drealms.com/wolf3d/index.html
 
 %description registered-apogee
 This package contains %{name} compiled for playing the registered version of
@@ -59,7 +59,7 @@ registered version. Place the data files under
 
 %package        shareware
 Summary:        SDL port of id Software's Wolfenstein 3D - shareware version
-URL:            http://www.3drealms.com/wolf3d/index.html
+URL:            https://www.3drealms.com/wolf3d/index.html
 Requires:       wolf3d-shareware
 
 %description shareware
@@ -70,7 +70,7 @@ Wolfenstein 3D.
 
 %package        spear
 Summary:        SDL port of Wolfenstein 3D - Spear of Destiny version
-URL:            http://www.idsoftware.com/games/wolfenstein/spear/
+URL:            https://www.idsoftware.com/games/wolfenstein/spear/
 
 %description spear
 This package contains %{name} compiled for playing the Spear of Destiny
@@ -85,7 +85,7 @@ Place the data files under /usr/share/spear/full before starting
 
 %package        spear-demo
 Summary:        SDL port of Wolfenstein 3D - Spear of Destiny demo version
-URL:            http://www.idsoftware.com/games/wolfenstein/spear/
+URL:            https://www.idsoftware.com/games/wolfenstein/spear/
 Requires:       spear-demo
 
 %description spear-demo
